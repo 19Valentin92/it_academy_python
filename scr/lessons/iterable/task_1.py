@@ -1,53 +1,23 @@
-my_list_1=input()
-my_list_2=('()[]{}')
-d=[]
-for i in my_list_1:
-    if i in my_list_2:
-        d+=i
-    else:
-        ...
-counter_1=0
-if d.count("(")==d.count(")") and d.count("[")==d.count("]") and d.count("{")==d.count("}"):
-
-    for i in d:
-        if i==("("):
-            counter_1+=1
-        elif i==(")"):
-            counter_1-=1
-            if counter_1<0:
-                break
-    for i in d:
-        if i==("["):
-            counter_1+=1
-        elif i==("]"):
-            counter_1-=1
-            if counter_1 < 0:
-                break
-    for i in d:
-        if i==("{"):
-            counter_1+=1
-        elif i==("}"):
-            counter_1-=1
-            if counter_1 < 0:
-                break
-    if counter_1==0:
-
-        for index, value in enumerate(d):
-            y=d[index+1:]
-            if (index + 1) != len(d):
-                x=y[0]
-            if value=="(" and x!="]" and x!="}":
-                counter_1+=1
-            if value=="[" and x!=")" and x!="}":
-                counter_1+=1
-            if value=="{" and x!="]" and x!=")":
-                counter_1+=1
-        if counter_1==(len(d)/2):
-            print("Верно")
-
-        else:
-            print('Неверно')
-    else:
-        print('Неверно')
+brackets_string = input()
+brackets = []
+bool_value = True
+for i in brackets_string:
+    if i in '({[':
+        brackets.append(i)
+    elif i in ')}]':
+        if not brackets:
+            bool_value = False
+            break
+        cloud_storage = brackets.pop()
+        if cloud_storage == '(' and i == ')':
+            continue
+        if cloud_storage == '[' and i == ']':
+            continue
+        if cloud_storage == '{' and i == '}':
+            continue
+        bool_value = False
+        break
+if bool_value and len(brackets) == 0:
+    print("Верно")
 else:
     print('Неверно')
